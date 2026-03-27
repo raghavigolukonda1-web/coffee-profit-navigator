@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from "remotion";
-import { FONTS, COLORS } from "../MainVideo";
+import { FONTS, COLORS } from "../constants";
 
 export const Scene4Pareto: React.FC = () => {
   const frame = useCurrentFrame();
