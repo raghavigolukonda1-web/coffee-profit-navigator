@@ -4,6 +4,10 @@ import { TransitionSeries, springTiming } from "@remotion/transitions";
 import { wipe } from "@remotion/transitions/wipe";
 import { fade } from "@remotion/transitions/fade";
 import { Scene1Intro } from "./scenes/Scene1Intro";
+import { Scene2KPIs } from "./scenes/Scene2KPIs";
+import { Scene3Categories } from "./scenes/Scene3Categories";
+import { Scene4Pareto } from "./scenes/Scene4Pareto";
+import { Scene5Closing } from "./scenes/Scene5Closing";
 import { COLORS } from "./constants";
 
 const TRANSITION_DURATION = 20;
