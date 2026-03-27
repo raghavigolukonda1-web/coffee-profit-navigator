@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Playfair Display', 'serif'],
+        body: ['Source Sans 3', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -46,6 +50,22 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        coffee: {
+          cream: "hsl(var(--coffee-cream))",
+          latte: "hsl(var(--coffee-latte))",
+          caramel: "hsl(var(--coffee-caramel))",
+          mocha: "hsl(var(--coffee-mocha))",
+          espresso: "hsl(var(--coffee-espresso))",
+          gold: "hsl(var(--coffee-gold))",
+        },
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+          "6": "hsl(var(--chart-6))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
