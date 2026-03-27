@@ -3,34 +3,33 @@ import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 import { TransitionSeries, springTiming } from "@remotion/transitions";
 import { wipe } from "@remotion/transitions/wipe";
 import { fade } from "@remotion/transitions/fade";
+import { slide } from "@remotion/transitions/slide";
 import { Scene1Intro } from "./scenes/Scene1Intro";
-import { Scene2KPIs } from "./scenes/Scene2KPIs";
-import { Scene3Categories } from "./scenes/Scene3Categories";
-import { Scene4Pareto } from "./scenes/Scene4Pareto";
-import { Scene5Closing } from "./scenes/Scene5Closing";
+import { Scene2Problem } from "./scenes/Scene2Problem";
+import { Scene3Dashboard } from "./scenes/Scene3Dashboard";
+import { Scene4KPIs } from "./scenes/Scene4KPIs";
+import { Scene5Categories } from "./scenes/Scene5Categories";
+import { Scene6Products } from "./scenes/Scene6Products";
+import { Scene7Pareto } from "./scenes/Scene7Pareto";
+import { Scene8Closing } from "./scenes/Scene8Closing";
 import { COLORS } from "./constants";
 
-const TRANSITION_DURATION = 20;
+const T = 25; // transition duration
 
 export const MainVideo: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // Persistent subtle grain overlay
-  const grainOpacity = interpolate(
-    Math.sin(frame * 0.3),
-    [-1, 1],
-    [0.02, 0.06]
-  );
+  const grainOpacity = interpolate(Math.sin(frame * 0.3), [-1, 1], [0.02, 0.05]);
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.dark }}>
       {/* Persistent floating accent circles */}
       <AbsoluteFill style={{ pointerEvents: "none" }}>
-        {[0, 1, 2].map((i) => {
-          const speed = 0.008 + i * 0.003;
-          const x = 300 + i * 500 + Math.sin(frame * speed) * 80;
-          const y = 200 + i * 250 + Math.cos(frame * speed * 1.3) * 60;
-          const size = 200 + i * 100;
+        {[0, 1, 2, 3].map((i) => {
+          const speed = 0.005 + i * 0.002;
+          const x = 200 + i * 450 + Math.sin(frame * speed) * 100;
+          const y = 150 + i * 200 + Math.cos(frame * speed * 1.2) * 80;
+          const size = 250 + i * 80;
           return (
             <div
               key={i}
@@ -41,7 +40,7 @@ export const MainVideo: React.FC = () => {
                 width: size,
                 height: size,
                 borderRadius: "50%",
-                background: `radial-gradient(circle, ${COLORS.sienna}22, transparent)`,
+                background: `radial-gradient(circle, ${i % 2 === 0 ? COLORS.sienna : COLORS.gold}18, transparent)`,
               }}
             />
           );
@@ -49,36 +48,72 @@ export const MainVideo: React.FC = () => {
       </AbsoluteFill>
 
       <TransitionSeries>
-        <TransitionSeries.Sequence durationInFrames={100}>
+        {/* Scene 1: Brand Intro - 4s */}
+        <TransitionSeries.Sequence durationInFrames={120}>
           <Scene1Intro />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
-          presentation={wipe({ direction: "from-left" })}
-          timing={springTiming({ config: { damping: 200 }, durationInFrames: TRANSITION_DURATION })}
+          presentation={fade()}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
         />
-        <TransitionSeries.Sequence durationInFrames={95}>
-          <Scene2KPIs />
+
+        {/* Scene 2: Problem Statement - 6s */}
+        <TransitionSeries.Sequence durationInFrames={180}>
+          <Scene2Problem />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={wipe({ direction: "from-left" })}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
+        />
+
+        {/* Scene 3: Dashboard Reveal - 7s */}
+        <TransitionSeries.Sequence durationInFrames={210}>
+          <Scene3Dashboard />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
           presentation={fade()}
-          timing={springTiming({ config: { damping: 200 }, durationInFrames: TRANSITION_DURATION })}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
         />
-        <TransitionSeries.Sequence durationInFrames={90}>
-          <Scene3Categories />
+
+        {/* Scene 4: KPI Highlights - 6s */}
+        <TransitionSeries.Sequence durationInFrames={180}>
+          <Scene4KPIs />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={slide({ direction: "from-right" })}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
+        />
+
+        {/* Scene 5: Category Revenue - 6s */}
+        <TransitionSeries.Sequence durationInFrames={180}>
+          <Scene5Categories />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
           presentation={wipe({ direction: "from-bottom" })}
-          timing={springTiming({ config: { damping: 200 }, durationInFrames: TRANSITION_DURATION })}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
         />
-        <TransitionSeries.Sequence durationInFrames={95}>
-          <Scene4Pareto />
+
+        {/* Scene 6: Top Products - 7s */}
+        <TransitionSeries.Sequence durationInFrames={210}>
+          <Scene6Products />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
           presentation={fade()}
-          timing={springTiming({ config: { damping: 200 }, durationInFrames: TRANSITION_DURATION })}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
         />
-        <TransitionSeries.Sequence durationInFrames={150}>
-          <Scene5Closing />
+
+        {/* Scene 7: Pareto Insight - 8s */}
+        <TransitionSeries.Sequence durationInFrames={240}>
+          <Scene7Pareto />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={fade()}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: T })}
+        />
+
+        {/* Scene 8: Closing - 6s + extra for fade */}
+        <TransitionSeries.Sequence durationInFrames={280}>
+          <Scene8Closing />
         </TransitionSeries.Sequence>
       </TransitionSeries>
 
