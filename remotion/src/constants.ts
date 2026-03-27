@@ -1,15 +1,17 @@
 import { loadFont as loadPlayfair } from "@remotion/google-fonts/PlayfairDisplay";
-import { loadFont as loadSourceSans } from "@remotion/google-fonts/SourceSans3";
+import { loadFont as loadLato } from "@remotion/google-fonts/Lato";
 
-const { fontFamily: playfair } = loadPlayfair("normal", { weights: ["700", "900"], subsets: ["latin"] });
-const { fontFamily: sourceSans } = loadSourceSans("normal", { weights: ["400", "600", "700"], subsets: ["latin"] });
+const { fontFamily: playfair } = loadPlayfair("normal", { weights: ["400", "700", "900"], subsets: ["latin"] });
+const { fontFamily: lato } = loadLato("normal", { weights: ["300", "400", "700", "900"], subsets: ["latin"] });
 
-export const FONTS = { display: playfair, body: sourceSans };
+export const FONTS = { display: playfair, body: lato };
 export const COLORS = {
-  espresso: "#2C1810",
+  gold: "#A17C4E",
+  goldLight: "#C9A96E",
+  black: "#1A1A1A",
+  darkBrown: "#2C2017",
   cream: "#F5F0E8",
-  sienna: "#A0522D",
-  gold: "#C8A96E",
-  latte: "#D4B896",
-  dark: "#1A0F09",
+  warmWhite: "#FAF8F5",
+  espresso: "#3D2B1F",
+  dark: "#0D0906",
 };
